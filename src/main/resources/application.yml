@@ -1,0 +1,45 @@
+server:
+  port: 8088
+
+#log
+logging:
+  pattern:
+    console: "%d - %p - %t %c- %m%n"
+  file: logs/bszn-gl.log
+  level.com.xiaoi.gzszf: debug
+
+spring:
+  data:
+    neo4j:
+      uri: http://172.16.205.69:7474
+      username: neo4j
+      password: swmu@123
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: gzszf
+    url: jdbc:mysql://172.16.205.69:3306/bazn_db?characterEncoding=UTF-8
+    type: com.alibaba.druid.pool.DruidDataSource
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+  druid:
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+  jpa:
+    database: mysql
+    show-sql: true
+
